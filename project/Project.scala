@@ -9,7 +9,6 @@ object ScalabootBuild extends Build {
   val PROJECT_NAME = "scalaboot" //TODO change this!
 
   var commonResolvers = Seq(
-    "Wajam" at "http://ci1.cx.wajam/",
     "Maven.org" at "http://repo1.maven.org/maven2",
     "Sun Maven2 Repo" at "http://download.java.net/maven/2",
     "Scala-Tools" at "http://scala-tools.org/repo-releases/",
@@ -38,7 +37,7 @@ object ScalabootBuild extends Build {
     publishMavenStyle := true,
     organization := "sss",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.10.2",
+    scalaVersion := "2.10.3",
     ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
   )
 
