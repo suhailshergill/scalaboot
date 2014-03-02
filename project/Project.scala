@@ -21,7 +21,6 @@ object ScalabootBuild extends Build {
   )
 
   var commonDeps = Seq(
-    "com.wajam" %% "nrv-core" % "0.1-SNAPSHOT",
     "org.scalatest" %% "scalatest" % "2.0" % "test,it",
     "junit" % "junit" % "4.10" % "test,it",
     "org.mockito" % "mockito-core" % "1.9.0" % "test,it"
@@ -37,7 +36,7 @@ object ScalabootBuild extends Build {
     resolvers ++= commonResolvers,
     retrieveManaged := true,
     publishMavenStyle := true,
-    organization := "com.wajam",
+    organization := "sss",
     version := "0.1-SNAPSHOT",
     scalaVersion := "2.10.2",
     ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
