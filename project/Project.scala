@@ -20,6 +20,8 @@ object ScalabootBuild extends Build {
   )
 
   var commonDeps = Seq(
+    "org.scalaz" %% "scalaz-core" % "7.0.5",
+    "com.chuusai" % "shapeless" % "2.0.0-M1" cross CrossVersion.full,
     "org.scalatest" %% "scalatest" % "2.0" % "test,it",
     "junit" % "junit" % "4.10" % "test,it",
     "org.mockito" % "mockito-core" % "1.9.0" % "test,it"
