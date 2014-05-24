@@ -20,9 +20,9 @@ object ScalabootBuild extends Build {
   )
 
   var commonDeps = Seq(
-    "org.scalaz" %% "scalaz-core" % "7.0.5",
-    "com.chuusai" % "shapeless" % "2.0.0-M1" cross CrossVersion.full,
-    "org.scalatest" %% "scalatest" % "2.0" % "test,it",
+    "org.scalaz" %% "scalaz-core" % "7.0.6",
+    "com.chuusai" % "shapeless" % "2.0.0" cross CrossVersion.full,
+    "org.scalatest" %% "scalatest" % "2.1.6" % "test,it",
     "junit" % "junit" % "4.10" % "test,it",
     "org.mockito" % "mockito-core" % "1.9.0" % "test,it"
   )
@@ -39,7 +39,7 @@ object ScalabootBuild extends Build {
     publishMavenStyle := true,
     organization := "sss",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.10.3",
+    scalaVersion := "2.10.4",
     ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
   )
 
