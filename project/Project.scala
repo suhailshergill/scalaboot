@@ -28,8 +28,8 @@ object ScalabootBuild extends Build {
   )
 
   def configureScalariform(pref: IFormattingPreferences): IFormattingPreferences = {
-    pref.setPreference(AlignParameters, true)
-      .setPreference(DoubleIndentClassDeclaration, true)
+    pref
+      .setPreference(AlignParameters, true)
   }
 
   val defaultSettings = Defaults.defaultSettings ++ Defaults.itSettings ++ scalariformSettings ++ Seq(
