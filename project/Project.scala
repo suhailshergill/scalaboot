@@ -36,7 +36,6 @@ object ScalabootBuild extends Build {
     "com.twitter" %% "scalding-core" % "0.10.0",
     "com.twitter" %% "scalding-avro" % "0.10.0",
     "com.twitter" %% "scalding-commons" % "0.10.0"
-    // "org.apache.hadoop" % "hadoop-core" % "2.3.0-mr1-cdh5.0.1" % "provided",
   )
 
   def configureScalariform(pref: IFormattingPreferences): IFormattingPreferences = {
@@ -84,6 +83,7 @@ object ScalabootBuild extends Build {
         , "commons-beanutils-1.7.0.jar" // "
         , "asm-3.1.jar" // there's already asm-4.0
         , "jsp-2.1-6.1.14.jar"
+        , "hadoop-core-1.0.3.jar", "hadoop-tools-1.0.3.jar"
       )
       cp filter { jar => excludes(jar.data.getName) }
     },
