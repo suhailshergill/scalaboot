@@ -11,6 +11,9 @@ import WordCountJob._
 import types.examples._
 
 class WordCountJob(args: Args) extends HJob[TokenCount](args) {
+  println(s"HMM:: inputPath = ${inputPath}")
+  println(s"HMM:: outputPath = ${outputPath}")
+
   val output = TypedPipe.from(TextLine(inputPath)).
     flatMap { line: String => WordCountJob.tokenize(line) }.
     groupBy(identity).size.
