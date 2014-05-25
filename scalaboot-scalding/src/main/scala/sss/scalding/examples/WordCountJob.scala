@@ -14,14 +14,14 @@ class WordCountJob(args: Args) extends HJob[TokenCount](args) {
   println(s"HMM:: inputPath = ${inputPath}")
   println(s"HMM:: outputPath = ${outputPath}")
 
-  val output = TypedPipe.from(TextLine(inputPath)).
+  val output = TypedPipe.from(TextLine(s"${inputPath}/hack.txt")).
     flatMap { line: String => WordCountJob.tokenize(line) }.
     groupBy(identity).size.
     toTypedPipe.map {
       case (x, y) => new TokenCount(x, y)
     }
 
-  output.write(PackedAvroSource[Output](outputPath))
+  output.write(PackedAvroSource[Output](s"${outputPath}/wordcount"))
 }
 
 class WordCountJobReader(args: Args) extends HJob[(String, Long)](args) {
