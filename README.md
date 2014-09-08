@@ -19,7 +19,7 @@ Dependencies included (September 2014):
 - Open file **project/Project.scala**: 
 	- Change the name of **ScalabootBuild** object and **PROJECT_NAME** val to the name of your project.
 	- If at this point you know of any dependencies your project needs, add them
-- Change the name of the scalaboot-core folder to reflect your project name.
-- In the source classes, look for the **App**. Change the package and the name of the application class.
+- Change the name of the *scalaboot-core* folder to reflect your project name: `scalaboot-core` &rarr; `<your-core>`
+- In the source classes, look for the **App**, the application class; it is named `Scalaboot.scala` and it is located in `<your-core>\src\main\scala\sss\scalaboot`. Change this package and the name of the application class.
 - **Now it is up to you**: start adding your code and play with it. Make sure, in **project/Project.scala**, to modify the name of your runner (by default it is *HADOOP_JOBRUNNER*). 
 
