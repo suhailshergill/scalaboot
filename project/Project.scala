@@ -9,7 +9,7 @@ object ScalabootBuild extends Build {
   val PROJECT_NAME = "scalaboot" //TODO change this!
   val HADOOP_JOBRUNNER = "sss.scalding.JobRunner"
 
-  var commonResolvers = Seq(
+  lazy val commonResolvers = Seq(
     "Maven.org" at "http://repo1.maven.org/maven2",
     "Sun Maven2 Repo" at "http://download.java.net/maven/2",
     "Scala-Tools" at "http://scala-tools.org/repo-releases/",
@@ -20,7 +20,7 @@ object ScalabootBuild extends Build {
     "Twitter" at "http://maven.twttr.com/"
   )
 
-  var commonDeps = Seq(
+  lazy val commonDeps = Seq(
     "org.scalaz" %% "scalaz-core" % "7.0.6",
     "com.chuusai" % "shapeless" % "2.0.0" cross CrossVersion.full,
     "org.scalatest" %% "scalatest" % "2.1.6" % "test,it",
@@ -28,11 +28,11 @@ object ScalabootBuild extends Build {
     "org.mockito" % "mockito-core" % "1.9.0" % "test,it"
   )
 
-  var hadoopResolvers = Seq( // scalding, cascading etc
+  lazy val hadoopResolvers = Seq( // scalding, cascading etc
     "Concurrent Maven Repo" at "http://conjars.org/repo",
     "clojars.org" at "http://clojars.org/repo")
 
-  val hadoopDeps = Seq(
+  lazy val hadoopDeps = Seq(
     "com.twitter" %% "scalding-commons" % "0.10.0"
     // "org.apache.hadoop" % "hadoop-core" % "2.3.0-mr1-cdh5.0.1" % "provided",
   )
@@ -42,7 +42,7 @@ object ScalabootBuild extends Build {
       .setPreference(AlignParameters, true)
   }
 
-  val defaultSettings = Defaults.itSettings ++
+  lazy val defaultSettings = Defaults.itSettings ++
     logSettings ++
     sbtCompilerPlugins.settings ++
     sbtStartScript.settings ++
