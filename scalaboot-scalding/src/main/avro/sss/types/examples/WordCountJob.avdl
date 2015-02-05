@@ -2,8 +2,8 @@
 protocol WordCountJob {
 
   record TokenCount {
-    string token;
-    long count;
+    string token; // this is a token field
+    long count; // this field is used to store the associated counts
   }
 
 }
