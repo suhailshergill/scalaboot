@@ -45,16 +45,21 @@ object ScalabootBuild extends Build {
       .setPreference(AlignParameters, true)
   }
 
-  val defaultSettings = Defaults.defaultSettings ++ Defaults.itSettings ++ logSettings ++ scalariformSettings ++ Seq(
-    libraryDependencies ++= commonDeps,
-    resolvers ++= commonResolvers,
-    retrieveManaged := true,
-    publishMavenStyle := true,
-    organization := "sss",
-    version := "0.1-SNAPSHOT",
-    scalaVersion := "2.10.4",
-    ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
-  )
+  val defaultSettings = Defaults.itSettings ++
+    logSettings ++
+    sbtCompilerPlugins.settings ++
+    scalariformSettings ++
+    Seq(
+      libraryDependencies ++= commonDeps,
+      libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+      resolvers ++= commonResolvers,
+      retrieveManaged := true,
+      publishMavenStyle := true,
+      organization := "sss",
+      version := "0.1-SNAPSHOT",
+      scalaVersion := "2.10.4",
+      ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
+    )
 
   import sbtassembly.Plugin._
   import AssemblyKeys._
