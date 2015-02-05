@@ -2,14 +2,14 @@ object sbtAvro {
   import sbt._
   import sbtavro.SbtAvro._
 
-  private lazy val deps = Seq(
-    "com.twitter" %% "scalding-core" % "0.10.0"
-    , "com.twitter" %% "scalding-avro" % "0.10.0"
+  private def deps(scaldingVersion: String) = Seq(
+    "com.twitter" %% "scalding-core" % scaldingVersion
+    , "com.twitter" %% "scalding-avro" % scaldingVersion
     )
 
 
-  lazy val settings = avroSettings ++ Seq(
-    Keys.libraryDependencies ++= deps
+  def settings(scaldingVersion: String) = avroSettings ++ Seq(
+    Keys.libraryDependencies ++= deps(scaldingVersion)
     , Keys.version in avroConfig := "1.7.5" // remove this if you want cdh5 avro
                                             // to be pulled in
     , stringType in avroConfig := "String"
