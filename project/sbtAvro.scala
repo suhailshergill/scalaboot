@@ -9,9 +9,7 @@ object sbtAvro {
 
 
   lazy val settings = avroSettings ++ Seq(
-    Keys.resolvers += "sbt-plugin-releases" at
-      "http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases"
-    , Keys.libraryDependencies ++= deps
+    Keys.libraryDependencies ++= deps
     , Keys.version in avroConfig := "1.7.5" // remove this if you want cdh5 avro
                                             // to be pulled in
     , stringType in avroConfig := "String"

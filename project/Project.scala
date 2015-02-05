@@ -8,14 +8,15 @@ object ScalabootBuild extends Build {
   val HADOOP_JOBRUNNER = "sss.scalding.JobRunner"
 
   lazy val commonResolvers = Seq(
-    "Maven.org" at "http://repo1.maven.org/maven2",
-    "Sun Maven2 Repo" at "http://download.java.net/maven/2",
-    "Scala-Tools" at "http://scala-tools.org/repo-releases/",
-    "Sun GF Maven2 Repo" at "http://download.java.net/maven/glassfish",
-    "Oracle Maven2 Repo" at "http://download.oracle.com/maven",
-    "Sonatype" at "http://oss.sonatype.org/content/repositories/release",
-    "spy" at "http://files.couchbase.com/maven2/",
-    "Twitter" at "http://maven.twttr.com/"
+    "Maven.org" at "http://repo1.maven.org/maven2"
+    , "Sun Maven2 Repo" at "http://download.java.net/maven/2"
+    , "Scala-Tools" at "http://scala-tools.org/repo-releases/"
+    , "Sun GF Maven2 Repo" at "http://download.java.net/maven/glassfish"
+    , "Oracle Maven2 Repo" at "http://download.oracle.com/maven"
+    , "spy" at "http://files.couchbase.com/maven2/"
+    , "Twitter" at "http://maven.twttr.com/"
+    , Resolver.sonatypeRepo("releases")
+    , Resolver.typesafeRepo("releases")
   )
 
   lazy val commonDeps = Seq(
