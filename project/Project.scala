@@ -59,6 +59,13 @@ object ScalabootBuild extends Build {
       ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
     )
 
+  def defaultProject: Project => Project = _.
+    configs(IntegrationTest).
+    settings(defaultSettings: _*).
+    settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test")))).
+    settings(parallelExecution in IntegrationTest := false)
+
+
   lazy val hadoopSettings = defaultSettings ++
     sbtAssembly.settings(HADOOP_JOBRUNNER) ++
     sbtAvro.settings ++
@@ -67,23 +74,12 @@ object ScalabootBuild extends Build {
       , libraryDependencies ++= hadoopDeps
     )
 
-  lazy val root = Project(PROJECT_NAME, file("."))
-    .configs(IntegrationTest)
-    .settings(defaultSettings: _*)
-    .settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test"))))
-    .settings(parallelExecution in IntegrationTest := false)
+  lazy val root = defaultProject(Project(PROJECT_NAME, file(".")))
     .aggregate(core, scalding)
 
-  lazy val core = Project(PROJECT_NAME+"-core", file(PROJECT_NAME+"-core"))
-    .configs(IntegrationTest)
-    .settings(defaultSettings: _*)
-    .settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test"))))
-    .settings(parallelExecution in IntegrationTest := false)
+  lazy val core = defaultProject(Project(PROJECT_NAME+"-core", file(PROJECT_NAME+"-core")))
 
-  lazy val scalding = Project(s"${PROJECT_NAME}-scalding", file(s"${PROJECT_NAME}-scalding"))
-    .configs(IntegrationTest)
+  lazy val scalding = defaultProject(Project(s"${PROJECT_NAME}-scalding", file(s"${PROJECT_NAME}-scalding")))
     .settings(hadoopSettings: _*)
-    .settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test"))))
-    .settings(parallelExecution in IntegrationTest := false)
     .dependsOn(core)
 }
