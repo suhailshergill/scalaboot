@@ -1,7 +1,5 @@
 import sbt._
 import Keys._
-import com.typesafe.sbt.SbtScalariform._
-import scalariform.formatter.preferences._
 import LogSettings._
 
 //TODO change the name of the object to reflect your project name.
@@ -37,16 +35,11 @@ object ScalabootBuild extends Build {
     // "org.apache.hadoop" % "hadoop-core" % "2.3.0-mr1-cdh5.0.1" % "provided",
   )
 
-  def configureScalariform(pref: IFormattingPreferences): IFormattingPreferences = {
-    pref
-      .setPreference(AlignParameters, true)
-  }
-
   lazy val defaultSettings = Defaults.itSettings ++
     logSettings ++
     sbtCompilerPlugins.settings ++
     sbtStartScript.settings ++
-    scalariformSettings ++
+    sbtScalariform.settings ++
     Seq(
       libraryDependencies ++= commonDeps,
       libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
@@ -55,8 +48,7 @@ object ScalabootBuild extends Build {
       publishMavenStyle := true,
       organization := "sss",
       version := "0.1-SNAPSHOT",
-      scalaVersion := "2.10.4",
-      ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
+      scalaVersion := "2.10.4"
     )
 
   def defaultProject: Project => Project = _.
