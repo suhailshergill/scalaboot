@@ -1,6 +1,5 @@
 import sbt._
 import Keys._
-import com.typesafe.sbt.SbtStartScript
 import com.typesafe.sbt.SbtScalariform._
 import scalariform.formatter.preferences._
 import LogSettings._
@@ -46,6 +45,7 @@ object ScalabootBuild extends Build {
   val defaultSettings = Defaults.itSettings ++
     logSettings ++
     sbtCompilerPlugins.settings ++
+    sbtStartScript.settings ++
     scalariformSettings ++
     Seq(
       libraryDependencies ++= commonDeps,
@@ -105,7 +105,6 @@ object ScalabootBuild extends Build {
     .settings(defaultSettings: _*)
     .settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test"))))
     .settings(parallelExecution in IntegrationTest := false)
-    .settings(SbtStartScript.startScriptForClassesSettings: _*)
     .aggregate(core, scalding)
 
   lazy val core = Project(PROJECT_NAME+"-core", file(PROJECT_NAME+"-core"))
@@ -113,13 +112,11 @@ object ScalabootBuild extends Build {
     .settings(defaultSettings: _*)
     .settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test"))))
     .settings(parallelExecution in IntegrationTest := false)
-    .settings(SbtStartScript.startScriptForClassesSettings: _*)
 
   lazy val scalding = Project(s"${PROJECT_NAME}-scalding", file(s"${PROJECT_NAME}-scalding"))
     .configs(IntegrationTest)
     .settings(hadoopSettings: _*)
     .settings(testOptions in IntegrationTest := Seq(Tests.Filter(s => s.contains("Test"))))
     .settings(parallelExecution in IntegrationTest := false)
-    .settings(SbtStartScript.startScriptForClassesSettings: _*)
     .dependsOn(core)
 }
