@@ -1,7 +1,6 @@
 scalacOptions ++= Seq("-deprecation"
                       , "-explaintypes"
                       , "-feature"
-                      , "higherKinds"
                       , "-target:jvm-1.7"
                       , "-unchecked"
                       , "-encoding", "UTF-8"
