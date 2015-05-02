@@ -32,6 +32,7 @@ object ScalabootBuild extends Build {
     sbtCompilerPlugins.settings ++
     sbtStartScript.settings ++
     sbtScalariform.settings ++
+    scalacOptions.settings ++
     Seq(
       libraryDependencies ++= commonDeps,
       libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
