@@ -20,7 +20,7 @@ class WordCountJobTest extends WordSpec with HJobTest[TokenCount] {
     testJob("sss.scalding.examples.WordCountJob").
       source(TextLine(inputPath), inputData).
       sink[Output](PackedAvroSource[Output](outputPath))(buf => {
-        val outMap = buf.map(x => (x.token, x.count)).toMap
+        val outMap = buf.map(x => (x.getToken, x.getCount)).toMap
         "count words correctly" in {
           assertResult(4) {
             outMap("hack")
